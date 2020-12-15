@@ -11,7 +11,7 @@ const Statistics = (props) => {
         statisticDomList.push(<Statistic key={key} text={key} value={data[key]}/>)
       }
     }
-    return statisticDomList
+    return <table>{statisticDomList}</table>
 }
 
 const Buttons = props => {
@@ -29,8 +29,8 @@ const App = () => {
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
   const sum = good + neutral + bad,
-    average = (good * 1 + neutral * 0 + bad * -1) / sum,
-    positive = good / sum
+    average = ((good * 1 + neutral * 0 + bad * -1) / sum).toFixed(1),
+    positive = (( good / sum ) * 100).toFixed(1)+'%'
   
   const statisticObj = {good,neutral,bad,average,positive} 
   const buttonObj = {
