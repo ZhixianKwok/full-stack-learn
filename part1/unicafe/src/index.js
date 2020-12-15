@@ -1,12 +1,21 @@
 import React,{useState} from 'react';
 import ReactDOM from 'react-dom';
 
+const Statistics = (props) => {
+  return <fragment>
+    <p>average {props.average}</p>
+    <p>positive {props.positive}</p>
+  </fragment>
+}
+
 const App = () => {
    const [good,setGood] = useState(0)
    const [neutral,setNeutral] = useState(0)
    const [bad,setBad] = useState(0)
-   let sum = good + neutral + bad
-
+   const sum = good + neutral + bad,
+         average = (good * 1 + neutral * 0 + bad * -1) / sum,
+         positive = good / sum
+   
    return (
      <div>
        <h2>give feedback</h2>
@@ -17,10 +26,7 @@ const App = () => {
        <p>good {good}</p>
        <p>neutral {neutral}</p>
        <p>bad {bad}</p>
-       {!!sum && <fragment>
-        <p>average {(good * 1 + neutral * 0 + bad * -1) / sum }</p>
-        <p>positive { good / sum}</p>
-       </fragment>}
+       {!!sum && <Statistics average={average} positive={positive}/>}
      </div> 
    )
 }
