@@ -9,5 +9,6 @@ learn more. [📖](https://fullstackopen.com/en/about)
    - [x] 0.4. [new note](./part0/new-note.md)
    - [x] 0.5. [Single page app](./part0/single-page-app.md)
    - [x] 0.6. [New note](./part0/new-note-spa.md) 
+1. [Part 1 - Introduction to React](./part1)
    
 
