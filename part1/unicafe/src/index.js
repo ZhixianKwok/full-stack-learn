@@ -1,11 +1,27 @@
-import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
+import React, { useState } from 'react'
+import ReactDOM from 'react-dom'
+import Statistic from './components/Statistic'
+import Submit from './components/Submit'
+
 
 const Statistics = (props) => {
-  return <fragment>
-    <p>average {props.average}</p>
-    <p>positive {props.positive}</p>
-  </fragment>
+    const statisticDomList = [],data = props.data
+    for (const key in data) {
+      if (data.hasOwnProperty(key)) {
+        statisticDomList.push(<Statistic key={key} text={key} value={data[key]}/>)
+      }
+    }
+    return statisticDomList
+}
+
+const Buttons = props => {
+    const buttonDomList = [],data = props.data
+    for (const key in data) {
+      if (data.hasOwnProperty(key)) {
+        buttonDomList.push(<Submit key={key} text={key} handleOnClick={data[key]} />)
+      }
+    }
+    return buttonDomList
 }
 
 const App = () => {
@@ -15,18 +31,19 @@ const App = () => {
   const sum = good + neutral + bad,
     average = (good * 1 + neutral * 0 + bad * -1) / sum,
     positive = good / sum
-
+  
+  const statisticObj = {good,neutral,bad,average,positive} 
+  const buttonObj = {
+    good:() => setGood(good + 1),
+    neutral:() => setNeutral(neutral + 1),
+    bad:() => setBad(bad + 1)
+  }
   return (
     <div>
       <h2>give feedback</h2>
-      <button onClick={() => setGood(good + 1)}>good</button>
-      <button onClick={() => setNeutral(neutral + 1)}>neutral</button>
-      <button onClick={() => setBad(bad + 1)}>bad</button>
+      <Buttons data={buttonObj}/>
       <h2>statistics</h2>
-      {sum ? <fragment><p>good {good}</p>
-        <p>neutral {neutral}</p>
-        <p>bad {bad}</p>
-        <Statistics average={average} positive={positive} /></fragment> : <p>No feedback given</p>}
+      {sum ? <Statistics data={statisticObj}/> : <p>No feedback given</p>}
     </div>
   )
 }
