@@ -2,6 +2,7 @@ import axios from 'axios'
 import React,{ useState , useEffect } from 'react'
 
 import Country from './components/Country'
+import CountryDisplayControl from './components/CountryDisplayControl'
 
 export default function App() {
 
@@ -25,13 +26,13 @@ export default function App() {
     } else if( countryLenth > 10 ){
        return <p>Too many matches, specify another filter</p>
     } 
-    return !!countries.length && countries.map( country => <p key={ country.name }>{ country.name }</p>)
+    return !!countries.length && countries.map( country => <CountryDisplayControl key={ country.name } country={country} /> )
   }
   
   const handleOnChange = (e) => {
     setFilterWord(e.target.value)
   }
-  
+
   return (
     <div>
       <div>

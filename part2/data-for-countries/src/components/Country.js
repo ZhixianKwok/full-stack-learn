@@ -1,12 +1,12 @@
-import React from 'react'
+import React , { useState } from 'react'
 
 export default function Country({country}) {
 
     const { name , capital , population , languages , flag } = country
-
+    
     return (
         <div>
-            <h1>{ name }</h1>
+            <h1><span>{ name }</span></h1>
             <p> capital { capital }</p>
             <p> population { population }</p>
             <h2> language </h2>
