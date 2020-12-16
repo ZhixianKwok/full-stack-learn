@@ -19,6 +19,10 @@ const App = () => {
       name: 'State of a component',
       exercise: 14,
       id: 3
+    },{
+      name: 'Redux',
+      exercise: 11,
+      id: 4
     }]
   }
 

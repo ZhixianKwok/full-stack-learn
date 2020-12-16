@@ -1,7 +1,7 @@
 import react from 'react'
 
-export default (props) => {
+export default ({parts}) => {
     return <p>
-        Number of exercises {props.parts[0].exercise + props.parts[1].exercise + props.parts[2].exercise}
+        Number of exercises { parts.reduce((prev,next)=> prev + next.exercise ,0) }
     </p>
 }
