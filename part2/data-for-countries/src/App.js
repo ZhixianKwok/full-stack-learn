@@ -22,7 +22,7 @@ export default function App() {
     const countryLenth = countries.length
     
     if( countryLenth === 1 ){
-       return <Country country={countries[0]}/>
+       return <Country country={countries[0]} singleCountry={true}/>
     } else if( countryLenth > 10 ){
        return <p>Too many matches, specify another filter</p>
     } 
