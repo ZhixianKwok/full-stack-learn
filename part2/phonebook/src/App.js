@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
 
 import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
@@ -34,6 +33,15 @@ function App() {
     }
   }
 
+  const removePerson = ( id ) => {
+    personService.remove( id ).then(res => {
+      const index = persons.findIndex( person => person.id === id)
+      const personsNew = [...persons]
+      personsNew.splice(index,1)
+      setPersons(personsNew)
+    })
+  }
+
   const handleOnChangeName = (e) => {
     setNewName(e.target.value)
   }
@@ -55,7 +63,7 @@ function App() {
       <h2>add a new</h2>
       <PersonForm handleOnSubmit={handleOnSubmit} handleOnChangeName = { handleOnChangeName } handleOnChangeNumber ={ handleOnChangeNumber }/>
       <h2>Numbers</h2>
-      <Persons filterPersons = {filterPersons} />
+      <Persons filterPersons = {filterPersons} removePerson={removePerson}/>
     </div>
   );
 }

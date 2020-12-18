@@ -1,9 +1,12 @@
 import React, {Fragment} from 'react'
+import Person from './Person'
 
-export default function Person({filterPersons}) {
+export default function Persons({filterPersons,removePerson}) {
+
     return (
         <Fragment>
-            {filterPersons.map(({ name, number }) => <p key={ name }>{ name } { number }</p>)}
+            {filterPersons.map(({ name, number,id }) => <Person name={name} number={number} id={id} removePerson = {removePerson} />)}
         </Fragment>
     )
+
 }
