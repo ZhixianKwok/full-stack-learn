@@ -20,13 +20,21 @@ function App() {
 
   const handleOnSubmit = (e) => {
     e.preventDefault()
-    const person = persons.find( person => person.name=== newName)
-    if(person){
-      alert(`${person.name} is already added to phonebook`)
+    const index = persons.findIndex( person => person.name === newName)
+    if(index !== -1){
+      const dataNew = {
+        ...persons[index],
+        name:newName,
+        number:newNumber
+      }
+      const personsNew = [...persons]
+      personsNew[index] = dataNew
+      personService.update(dataNew).then(() => setPersons(personsNew))
     } else {
       const dataNew = {
         name:newName,
-        number:newNumber
+        number:newNumber,
+        id: persons.length + 1
       }
       const personsNew = persons.concat(dataNew)
       personService.create(dataNew).then(res => setPersons(personsNew))
