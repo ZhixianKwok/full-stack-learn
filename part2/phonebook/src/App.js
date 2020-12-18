@@ -4,14 +4,13 @@ import axios from 'axios'
 import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
 import Persons from './components/Persons'
+import personService from './services/personsService'
 
 function App() {
   const [persons, setPersons] = useState([])
 
   useEffect(() => {
-    console.log('effect')
-    axios.get('http://localhost:3001/persons').then(res=>{
-      console.log('promise fulfilled')
+    personService.getAll().then(res=>{
       setPersons(res.data)
     })
   },[])
@@ -31,8 +30,7 @@ function App() {
         number:newNumber
       }
       const personsNew = persons.concat(dataNew)
-      axios.post("http://localhost:3001/persons",dataNew).then(res => setPersons(personsNew))
-      
+      personService.create(dataNew).then(res => setPersons(personsNew))
     }
   }
 
@@ -48,7 +46,6 @@ function App() {
     setNewFilterWord(e.target.value)
   } 
   
-  console.log(persons);
   const filterPersons = persons.filter( person => person.name.toLowerCase().indexOf(filterWord.toLowerCase()) !== -1 )
   
   return (
