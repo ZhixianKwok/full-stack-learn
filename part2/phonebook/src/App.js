@@ -26,11 +26,13 @@ function App() {
     if(person){
       alert(`${person.name} is already added to phonebook`)
     } else {
-      const personsNew = persons.concat({
+      const dataNew = {
         name:newName,
         number:newNumber
-      })
-      setPersons(personsNew)
+      }
+      const personsNew = persons.concat(dataNew)
+      axios.post("http://localhost:3001/persons",dataNew).then(res => setPersons(personsNew))
+      
     }
   }
 
@@ -44,8 +46,9 @@ function App() {
 
   const handleChangeFilterWord = (e) => {
     setNewFilterWord(e.target.value)
-  }
-
+  } 
+  
+  console.log(persons);
   const filterPersons = persons.filter( person => person.name.toLowerCase().indexOf(filterWord.toLowerCase()) !== -1 )
   
   return (
