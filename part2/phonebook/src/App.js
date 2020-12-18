@@ -4,6 +4,9 @@ import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
 import Persons from './components/Persons'
 import personService from './services/personsService'
+import Notification from './components/Notification'
+
+import './index.css'
 
 function App() {
   const [persons, setPersons] = useState([])
@@ -17,6 +20,7 @@ function App() {
   const [ newName , setNewName ] = useState('')
   const [ newNumber , setNewNumber ] = useState('')
   const [ filterWord , setNewFilterWord ] = useState('')
+  const [ message , setNewMessage ] = useState('')
 
   const handleOnSubmit = (e) => {
     e.preventDefault()
@@ -29,15 +33,26 @@ function App() {
       }
       const personsNew = [...persons]
       personsNew[index] = dataNew
-      personService.update(dataNew).then(() => setPersons(personsNew))
+      personService.update(dataNew).then( res => {
+        setPersons(personsNew)
+        setNewMessage(`updated ${newName}`)
+        setTimeout(() => {
+          setNewMessage('')
+        },2000)
+      })
     } else {
       const dataNew = {
         name:newName,
         number:newNumber,
-        id: persons.length + 1
       }
       const personsNew = persons.concat(dataNew)
-      personService.create(dataNew).then(res => setPersons(personsNew))
+      personService.create(dataNew).then(res => {
+        setPersons( personsNew )
+        setNewMessage(`Added ${newName}`)
+        setTimeout(() => {
+          setNewMessage('')
+        },2000)
+      })
     }
   }
 
@@ -67,6 +82,7 @@ function App() {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification message={ message } type="tip"/>
       <Filter handleChangeFilterWord={handleChangeFilterWord}/>
       <h2>add a new</h2>
       <PersonForm handleOnSubmit={handleOnSubmit} handleOnChangeName = { handleOnChangeName } handleOnChangeNumber ={ handleOnChangeNumber }/>
