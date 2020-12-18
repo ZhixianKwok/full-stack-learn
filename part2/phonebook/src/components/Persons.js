@@ -5,7 +5,7 @@ export default function Persons({filterPersons,removePerson}) {
 
     return (
         <Fragment>
-            {filterPersons.map(({ name, number,id }) => <Person key={id} name={name} number={number} id={id} removePerson = {removePerson} />)}
+            {filterPersons.map(({ name, number,id },index) => <Person key={index} name={name} number={number} id={id} removePerson = {removePerson} />)}
         </Fragment>
     )
 
