@@ -8,8 +8,6 @@ import Notification from './components/Notification'
 
 import './index.css'
 
-let type = "tip"
-
 function App() {
 
   const [persons, setPersons] = useState([])
@@ -23,7 +21,7 @@ function App() {
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [filterWord, setNewFilterWord] = useState('')
-  const [message, setNewMessage] = useState('')
+  const [message, setNewMessage] = useState(null)
 
   const handleOnSubmit = (e) => {
     e.preventDefault()
@@ -37,12 +35,11 @@ function App() {
       const personsNew = [...persons]
       personsNew[index] = dataNew
       personService.update(dataNew).then(res => {
-        type = "tip"
-        setPersons(personsNew)
-        setNewMessage(`updated ${newName}`)
-        setTimeout(() => {
-          setNewMessage('')
-        }, 2000)
+        const message = {
+          type:"tip",
+          content:`updated ${newName}`
+        }
+        updatePersonsState( personsNew, message )
       })
     } else {
       const dataNew = {
@@ -51,12 +48,11 @@ function App() {
       }
       const personsNew = persons.concat(dataNew)
       personService.create(dataNew).then(res => {
-        type = "tip"
-        setPersons(personsNew)
-        setNewMessage(`Added ${newName}`)
-        setTimeout(() => {
-          setNewMessage('')
-        }, 2000)
+        const message = {
+          type:"tip",
+          content:`Added ${newName}`
+        }
+        updatePersonsState( personsNew, message )
       })
     }
   }
@@ -65,18 +61,24 @@ function App() {
     const index = persons.findIndex(person => person.id === id)
     const personsNew = [...persons]
     personService.remove(id).then(res => {
-      type = "tip"
       personsNew.splice(index, 1)
       setPersons(personsNew)
     }).catch(res => {
-      type = "error"
+      const message = {
+        type:"error",
+        content:`Information of ${name} has already been removed from server`
+      }
       personsNew.splice(index, 1)
-      setPersons(personsNew)
-      setNewMessage(`Information of ${name} has already been removed from server`)
-      setTimeout(() => {
-        setNewMessage('')
-      }, 2000)
+      updatePersonsState( personsNew , message )
     })
+  }
+
+  const updatePersonsState = ( personsNew , message ) => {
+    setPersons(personsNew)
+    setNewMessage(message)
+    setTimeout(() => {
+      setNewMessage(null)
+    }, 2000)
   }
 
   const handleOnChangeName = (e) => {
@@ -96,7 +98,7 @@ function App() {
   return (
     <div>
       <h2>Phonebook</h2>
-      <Notification message={message} type={type} />
+      <Notification message={message} />
       <Filter handleChangeFilterWord={handleChangeFilterWord} />
       <h2>add a new</h2>
       <PersonForm handleOnSubmit={handleOnSubmit} handleOnChangeName={handleOnChangeName} handleOnChangeNumber={handleOnChangeNumber} />
