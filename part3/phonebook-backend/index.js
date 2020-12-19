@@ -1,7 +1,10 @@
 const express = require('express')
+const morgan = require('morgan')
 const app = express()
 
 app.use(express.json())
+app.use(morgan('tiny'))
+
 const PORT = process.env.PORT || 3001
 let persons = [{ 
     "name": "Arto Hellas", 
@@ -47,7 +50,7 @@ app.delete('/api/persons/:id',( req , res ) => {
 
 app.post('/api/persons', ( req , res ) => {
     const personNew = req.body
-    
+
     if( !personNew.number ){
         res.status(400).end(`Number must be entered!`)
     } 
