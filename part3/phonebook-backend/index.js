@@ -27,6 +27,14 @@ app.get('/api/persons',( req , res ) => {
     res.json(persons)
 })
 
+app.get('/info',( req , res ) => {
+    res.writeHead(200, { 'Content-Type': 'text/html' })
+    res.end(`
+       <div>phonebook has info for ${persons.length} people </div>
+       <div>${new Date()}</div>
+    `)  
+})
+
 app.listen(PORT,()=> {
     console.log(`server running on port ${PORT}`);
 })
