@@ -1,1 +1,16 @@
+### get all persons
+GET http://localhost:3001/api/persons/
+
+
+### Add user to phonebook
+POST http://localhost:3001/api/persons/
+Content-Type: application/json
+
+{
+    "name":"Mary Poppendieck",
+    "number":"110-121-120"
+}
+
+### Delete user from phonebook
 DELETE  http://localhost:3001/api/persons/3
+

@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 
+app.use(express.json())
 const PORT = process.env.PORT || 3001
 let persons = [{ 
     "name": "Arto Hellas", 
@@ -41,7 +42,26 @@ app.get('/api/persons/:id',( req , res ) => {
 app.delete('/api/persons/:id',( req , res ) => {
     const id = Number(req.params.id)
     const personsNew = persons.filter( person => person.id !== id )
-    res.json(personsNew)
+    res.status(204).end()
+})
+
+app.post('/api/persons', ( req , res ) => {
+    const personNew = req.body
+    
+    if( !personNew.number ){
+        res.status(400).end(`Number must be entered!`)
+    } 
+
+    const person = persons.find( item => item.name === personNew.name )
+    if( !person ) {
+        personNew.id = parseInt(Math.random() * 100000,10)
+        persons = persons.concat(personNew)
+        res.status(200).end()
+    } else {
+        res.status(200).end(`name must be unique`)
+    }
+  
+   
 })
 
 app.get('/info',( req , res ) => {
