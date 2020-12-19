@@ -38,6 +38,12 @@ app.get('/api/persons/:id',( req , res ) => {
     }
 })
 
+app.delete('/api/persons/:id',( req , res ) => {
+    const id = Number(req.params.id)
+    const personsNew = persons.filter( person => person.id !== id )
+    res.json(personsNew)
+})
+
 app.get('/info',( req , res ) => {
     res.writeHead(200, { 'Content-Type': 'text/html' })
     res.end(`
