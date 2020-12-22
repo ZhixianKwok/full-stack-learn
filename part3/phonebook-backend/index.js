@@ -47,11 +47,11 @@ app.get('/api/persons/:id',( req , res , next ) => {
 
 })
 
-app.delete('/api/persons/:id',( req , res ) => {
+app.delete('/api/persons/:id',( req , res , next ) => {
     Person.findByIdAndRemove( req.params.id ).then( result => {
         res.status(204).end()
     }).catch( err => {
-        console.log( err )
+         next( err )
     })
 })
 
@@ -65,7 +65,7 @@ app.put('/api/persons/:id', (req, res , next) => {
     })
 })
 
-app.post('/api/persons', ( req , res ) => {
+app.post('/api/persons', ( req , res , next ) => {
     const personNew = req.body
 
     if( !personNew.number ){
@@ -79,6 +79,8 @@ app.post('/api/persons', ( req , res ) => {
     person.save().then( result => {
         console.log(`added ${result.name} number ${result.number} to phonebook`)
         res.status(200).end()
+    }).catch( err => {
+        next( err )
     })
 })
 
@@ -90,18 +92,24 @@ app.get('/info',( req , res ) => {
     `)  
 })
 
-const errorHandler = ( err , req , res , next ) => {
-    console.error(err.message)
-    
-    if( err.name === "CastError" && err.kind === "ObjectId") {
-        return res.status(400).send({ error: 'malformatted id' })
-    } else if( err.name === "ValidationError" ) {
-        return res.status(400).send({ error: err.message })
-    }
-    
-    next(err)
+const unknownEndpoint = ( req , res ) => {
+    res.end(404).send({error: 'unknown endpoint'})
 }
 
+app.use(unknownEndpoint)
+
+const errorHandler = (error, request, response, next) => {
+    console.error(error.message)
+  
+    if (error.name === 'CastError' && error.kind == 'ObjectId') {
+      return response.status(400).send({ error: 'malformatted id' })
+    }  else if (error.name === 'ValidationError') {
+      return response.status(400).json({ error: error.message })
+    }
+  
+    next(error)
+}
+  
 app.use(errorHandler)
 
 app.listen(PORT,()=> {

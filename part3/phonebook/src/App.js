@@ -53,6 +53,15 @@ function App() {
           content:`Added ${newName}`
         }
         updatePersonsState( personsNew, message )
+      }).catch( ( { response } ) => {
+        const message = {
+          type:"error",
+          content: response.data.error
+        }
+        setNewMessage(message)
+        setTimeout(() => {
+          setNewMessage(null)
+        }, 2000)
       })
     }
   }
