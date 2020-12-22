@@ -24,13 +24,54 @@ learn more. [📖](https://fullstackopen.com/en/about)
    - [x] 1.12. [anecdotes, step1](./part1/anecdotes)
    - [x] 1.13. [anecdotes, step2](./part1/anecdotes)
    - [x] 1.14. [anecdotes, step3](./part1/anecdotes)
-2. Part 2 - Communicating with server
-3. Part 3 - Programming a server with NodeJS and Express
+2. [Part 2 - Communicating with server](./part2)
+   - [x] 2.1. [course information, step6](./part2/course-info)
+   - [x] 2.2. [course information, step7](./part2/course-info)
+   - [x] 2.3. [course information, step8](./part2/course-info)
+   - [x] 2.4. [course information, step9](./part2/course-info)
+   - [x] 2.6. [the phonebook, step1](./part2/phonebook)
+   - [x] 2.7. [the phonebook, step2](./part2/phonebook)
+   - [x] 2.8. [the phonebook, step3](./part2/phonebook)
+   - [x] 2.9. [the phonebook, step4](./part2/phonebook)
+   - [x] 2.10. [the phonebook, step5](./part2/phonebook)
+   - [x] 2.11. [the phonebook, step6](./part2/phonebook)
+   - [x] 2.12. [data for countries, step1](./part2/data-for-countries)
+   - [x] 2.13. [data for countries, step2](./part2/data-for-countries)
+   - [x] 2.14. [data for countries, step3](./part2/data-for-countries)
+   - [x] 2.15. [the phonebook, step7](./part2/phonebook)
+   - [x] 2.16. [the phonebook, step8](./part2/phonebook)
+   - [x] 2.17. [the phonebook, step9](./part2/phonebook)
+   - [x] 2.18. [the phonebook, step10](./part2/phonebook)
+   - [x] 2.19. [the phonebook, step11](./part2/phonebook)
+   - [x] 2.20. [the phonebook, step12](./part2/phonebook)
+3. [Part 3 - Programming a server with NodeJS and Express](./part3)
+   - [x] 3.1. [phonebook backend, step1](./part3/phonebook-backend)
+   - [x] 3.2. [phonebook backend, step2](./part3/phonebook-backend)
+   - [x] 3.3. [phonebook backend, step3](./part3/phonebook-backend)
+   - [x] 3.4. [phonebook backend, step4](./part3/phonebook-backend)
+   - [x] 3.5. [phonebook backend, step5](./part3/phonebook-backend)
+   - [x] 3.6. [phonebook backend, step6](./part3/phonebook-backend) 
+   - [x] 3.7. [phonebook backend, step7](./part3/phonebook-backend)
+   - [x] 3.8. [phonebook backend, step8](./part3/phonebook-backend)
+   - [x] 3.9. [phonebook backend, step9](./part3/phonebook-backend)
+   - [x] 3.10. [phonebook backend, step10](./part3/phonebook-backend)
+   - [x] 3.11. [phonebook full stack](./part3/phonebook-backend) 
+   - [x] 3.12. [Command-line database](./part3/phonebook-backend/mongo.js) 
+   - [x] 3.13. [phonebook database, step1](./part3/phonebook-backend) 
+   - [x] 3.14. [phonebook database, step2](./part3/phonebook-backend) 
+   - [x] 3.15. [phonebook database, step3](./part3/phonebook-backend) 
+   - [x] 3.16. [phonebook database, step4](./part3/phonebook-backend) 
+   - [x] 3.17. [phonebook database, step5](./part3/phonebook-backend) 
+   - [x] 3.18. [phonebook database, step6](./part3/phonebook-backend) 
+   - [x] 3.19. [phonebook database, step7](./part3/phonebook-backend) 
+   - [x] 3.20. [phonebook database, step8](./part3/phonebook-backend) 
+   - [x] 3.21. [Deploying the database backend to production](./part3/phonebook-backend) 
+   - [x] 3.22. [Lint configuration](./part3/phonebook-backend) 
 4. Part 4 - Testing Express servers, user administration
 5. Part 5 - Testing React apps
 6. Part 6 - State management with Redux
 7. Part 7 - React router, custom hooks, styling app with CSS and webpack
 8. Part 8 - GraphQL
-9. Part 9 - Typescript
+9.  Part 9 - Typescript
 10. Part 10 - React Native
 11. Part 11 - CI/CD
