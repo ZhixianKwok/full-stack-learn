@@ -32,7 +32,7 @@ app.get('/api/persons',( req , res ) => {
     })
 })
 
-app.get('/api/persons/:id',( req , res ) => {
+app.get('/api/persons/:id',( req , res , next ) => {
     const id = req.params.id
     
     Person.find({ _id: id }).then( result => { 
@@ -42,10 +42,9 @@ app.get('/api/persons/:id',( req , res ) => {
             res.status(404).end()
         }
     }).catch( err => {
-        res.status(404).send({error:'malformatted id'})
+        next( err )
     })
 
-   
 })
 
 app.delete('/api/persons/:id',( req , res ) => {
@@ -53,6 +52,16 @@ app.delete('/api/persons/:id',( req , res ) => {
         res.status(204).end()
     }).catch( err => {
         console.log( err )
+    })
+})
+
+app.put('/api/persons/:id', (req, res , next) => {
+    const person = req.body
+    
+    Person.findByIdAndUpdate( req.params.id , person , { new : true }).then( result => {
+        res.json( result )
+    }).catch(err => {
+        next(err)
     })
 })
 
@@ -80,6 +89,18 @@ app.get('/info',( req , res ) => {
        <div>${new Date()}</div>
     `)  
 })
+
+const errorHandler = ( err , req , res , next ) => {
+    console.error(err.message)
+    
+    if( err.name === "CastError" && err.kind === "ObjectId") {
+        return res.status(400).send({ error: 'malformatted id' })
+    }
+    
+    next(err)
+}
+
+app.use(errorHandler)
 
 app.listen(PORT,()=> {
     console.log(`server running on port ${PORT}`);

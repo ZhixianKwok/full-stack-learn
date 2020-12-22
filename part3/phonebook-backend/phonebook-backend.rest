@@ -17,3 +17,13 @@ Content-Type: application/json
 ### Delete user from phonebook
 DELETE  http://localhost:3001/api/persons/5fe146de0ef2a54737d8b811
 
+### Update user 
+PUT  http://localhost:3001/api/persons/5fe0611215d41228f800e362
+Content-Type: application/json
+
+{
+    "name":"Anna",
+    "number":"121-010-211"
+}
+
+
