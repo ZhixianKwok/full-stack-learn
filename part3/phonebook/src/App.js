@@ -25,23 +25,23 @@ function App() {
 
   const handleOnSubmit = (e) => {
     e.preventDefault()
-    // const index = persons.findIndex(person => person.name === newName)
-    // if (index !== -1) {
-    //   const dataNew = {
-    //     ...persons[index],
-    //     name: newName,
-    //     number: newNumber
-    //   }
-    //   const personsNew = [...persons]
-    //   personsNew[index] = dataNew
-    //   personService.update(dataNew).then(res => {
-    //     const message = {
-    //       type:"tip",
-    //       content:`updated ${newName}`
-    //     }
-    //     updatePersonsState( personsNew, message )
-    //   })
-    // } else {
+    const index = persons.findIndex(person => person.name === newName)
+    if (index !== -1) {
+      const dataNew = {
+        ...persons[index],
+        name: newName,
+        number: newNumber
+      }
+      const personsNew = [...persons]
+      personsNew[index] = dataNew
+      personService.update(dataNew).then(res => {
+        const message = {
+          type:"tip",
+          content:`updated ${newName}`
+        }
+        updatePersonsState( personsNew, message )
+      })
+    } else {
       const dataNew = {
         name: newName,
         number: newNumber,
@@ -54,7 +54,7 @@ function App() {
         }
         updatePersonsState( personsNew, message )
       })
-    //}
+    }
   }
 
   const removePerson = (id, name) => {
