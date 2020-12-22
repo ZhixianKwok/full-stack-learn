@@ -69,6 +69,7 @@ app.post('/api/persons', ( req , res ) => {
 
     person.save().then( result => {
         console.log(`added ${result.name} number ${result.number} to phonebook`)
+        res.status(200).end()
     })
 })
 
