@@ -1,6 +1,9 @@
 ### get all persons
 GET http://localhost:3001/api/persons/
 
+### get find person
+GET http://localhost:3001/api/persons/5fe0611215d41228f800e362
+
 
 ### Add user to phonebook
 POST http://localhost:3001/api/persons/
@@ -12,5 +15,5 @@ Content-Type: application/json
 }
 
 ### Delete user from phonebook
-DELETE  http://localhost:3001/api/persons/3
+DELETE  http://localhost:3001/api/persons/5fe146de0ef2a54737d8b811
 
