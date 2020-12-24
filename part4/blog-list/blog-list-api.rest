@@ -1,0 +1,13 @@
+### GET blog list
+GET http://localhost:3001/api/blogs
+
+### POST add a blog 
+POST http://localhost:3001/api/blogs
+content-type: application/json
+
+{
+    "title":"this is a test blog",
+    "author":"amos",
+    "url":"http://www.baidu.com",
+    "likes":10
+}
