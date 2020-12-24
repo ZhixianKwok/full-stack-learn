@@ -8,12 +8,12 @@ const logger = require('./utils/logger')
 
 const MONGODB_URI = config.MONGODB_URI
 mongoose.connect(MONGODB_URI,{useNewUrlParser:true,useUnifiedTopology:true,useFindAndModify:false,useCreateIndex:false})
-.then( result => {
+  .then( () => {
     logger.info('connected to MongoDB!')
-})
-.catch( error => {
+  })
+  .catch( error => {
     logger.error('error connecting to MongoDB', error.message)
-})
+  })
 
 const app = express()
 app.use(cors())
