@@ -103,7 +103,7 @@ function App() {
   }
 
   const filterPersons = persons.filter(person => person.name.toLowerCase().indexOf(filterWord.toLowerCase()) !== -1)
-
+  const a = <Notification message={message} />
   return (
     <div>
       <h2>Phonebook</h2>

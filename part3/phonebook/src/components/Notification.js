@@ -1,7 +1,8 @@
 import React from 'react'
 
 export default function Notification({ message }) {
-
+    
+    let message = null
     if( !message ){ 
         return null
     }
