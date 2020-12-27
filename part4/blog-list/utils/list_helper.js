@@ -1,3 +1,5 @@
+const {countBy ,forIn , sortBy } = require('lodash')
+
 const dummy = (blogs) => {
   return !blogs.length && 1
 }
@@ -14,8 +16,26 @@ const favoriteLikes = (blogs) =>{
   return null
 }
 
+const mostBlogs = (blogs) => {
+  let result = []
+  if(!blogs.length){
+    return {}
+  }
+  const countByBlogs = countBy(blogs,'author')
+  forIn(countByBlogs,(value,key) =>{
+    result.push({ 'author': key, 'blogs': value })
+  })
+  
+  result = sortBy(result,'blogs')
+  return result[result.length-1]
+}
+
+// const mostLikes = (blogs) =>{
+// }
+
 module.exports = {
   dummy,
   totalLikes,
-  favoriteLikes
+  favoriteLikes,
+  mostBlogs
 }
