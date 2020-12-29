@@ -1,12 +1,13 @@
 const express = require('express')
-
-const config = require('./utils/config')
 const cors = require('cors')
 const mongoose = require('mongoose')
+
+const config = require('./utils/config')
 const blogRouter = require('./controllers/blogs')
 const logger = require('./utils/logger')
-
+const {unknownEndpoint,errorHandler,requestLogger} = require('./utils/middleware')
 const MONGODB_URI = config.MONGODB_URI
+
 mongoose.connect(MONGODB_URI,{useNewUrlParser:true,useUnifiedTopology:true,useFindAndModify:false,useCreateIndex:false})
   .then( () => {
     logger.info('connected to MongoDB!')
@@ -18,6 +19,8 @@ mongoose.connect(MONGODB_URI,{useNewUrlParser:true,useUnifiedTopology:true,useFi
 const app = express()
 app.use(cors())
 app.use(express.json())
+app.use(requestLogger)
 app.use('/api/blogs',blogRouter)
-
+app.use(unknownEndpoint)
+app.use(errorHandler)
 module.exports = app

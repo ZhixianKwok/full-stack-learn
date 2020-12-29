@@ -6,8 +6,23 @@ POST http://localhost:3001/api/blogs
 content-type: application/json
 
 {
-    "title":"this is a test blog",
-    "author":"amos",
+    "title":"this is a test blog2",
+    "author":"amos oho",
     "url":"http://www.baidu.com",
-    "likes":10
+    "likes":15
+}
+
+### Delete remove a blog
+DELETE http://localhost:3001/api/blogs/5fe40eaf41e8ac926bf0afa5
+
+### Put update a blog
+PUT  http://localhost:3001/api/blogs/5fea998dba303566a96c9efa
+content-type: application/json
+
+{
+    "title": "this is a test blog3",
+    "author": "amos oho",
+    "url": "http://www.baidu.com/test",
+    "likes": 15,
+    "id": "5fea998dba303566a96c9efa"
 }

@@ -1,4 +1,4 @@
-const {countBy ,forIn , sortBy } = require('lodash')
+const { countBy ,forIn , sortBy } = require('lodash')
 
 const dummy = (blogs) => {
   return !blogs.length && 1
