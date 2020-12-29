@@ -5,8 +5,14 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "command": "cd ./part4/blog-list && npm run test",
+            "command": "cd ./part4/blog-list && npm start",
             "name": "Run npm start",
+            "request": "launch",
+            "type": "node-terminal"
+        },
+        {
+            "command": "cd ./part4/blog-list && npm run test",
+            "name": "Run npm test",
             "request": "launch",
             "type": "node-terminal"
         },

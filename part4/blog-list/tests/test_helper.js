@@ -1,4 +1,5 @@
 // const Blog = require('../models/blog')
+const User = require('../models/user')
 
 const initialBlogs = [
   {
@@ -49,7 +50,13 @@ const isContainIdAttibute = (blogs) => {
   return blogs.every(blog=>!!blog.id)
 }
 
+const userInDb = async ()=>{
+  const users = await User.find({})
+  return users.map(u=>u.toJSON())
+}
+
 module.exports = {
   initialBlogs,
-  isContainIdAttibute
+  isContainIdAttibute,
+  userInDb
 }

@@ -26,3 +26,16 @@ content-type: application/json
     "likes": 15,
     "id": "5fea998dba303566a96c9efa"
 }
+
+### Get user list 
+GET http://localhost:3001/api/users/
+
+### POST add a user 
+POST http://localhost:3001/api/users/
+content-type: application/json
+
+{
+    "username":"amoskwok",
+    "name":"amos kwok",
+    "password":"123454321"
+}

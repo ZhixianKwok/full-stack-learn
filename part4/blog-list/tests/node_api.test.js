@@ -1,12 +1,14 @@
 const supertest = require('supertest')
 const mongoose = require('mongoose')
+const bcrypt = require('bcrypt')
 
 const app = require('../app')
-const { initialBlogs, isContainIdAttibute } = require('./test_helper')
+const { initialBlogs, isContainIdAttibute,userInDb } = require('./test_helper')
 const Blog = require('../models/blog')
+const User = require('../models/user')
 const api = supertest(app)
 
-// 测试初始化
+//#region  /api/blog/
 beforeEach(async () => {
   await Blog.deleteMany({})
   
@@ -100,6 +102,40 @@ describe('updation of a blog',()=>{
     copyBlog.url='this is a test blog for updation of a blog'
     const result = await api.put(`/api/blogs/${copyBlog.id}`).send(copyBlog)
     expect(result.body).toEqual(copyBlog)
+  })
+})
+//#endregion
+
+//#region  /api/user/
+
+describe('when there is initially one user in db', ()=>{
+  beforeEach(async ()=>{
+    await User.deleteMany({})
+
+    const passwordHash = await bcrypt.hash('sekret',10)
+    const user = new User({ username: 'root', password: passwordHash })
+    await user.save()
+  })
+
+  test('creation succeeds with a fresh username', async ()=>{
+    const usersAtStart = await userInDb()
+    
+    const newUser = {
+      username: 'mluukkai',
+      name:'Matti luukkainen',
+      password: 'salainen'
+    }
+
+    await api.post('/api/users')
+      .send(newUser)
+      .expect(201)
+      .expect('Content-Type', /application\/json/)
+
+    const usersAtEnd = await userInDb()
+    expect(usersAtEnd).toHaveLength(usersAtStart.length+1)
+
+    const usernames = usersAtEnd.map(u=>u.username)
+    expect(usernames).toContain(newUser.username)
   })
 })
 
