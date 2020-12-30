@@ -4,16 +4,20 @@ GET http://localhost:3001/api/blogs
 ### POST add a blog 
 POST http://localhost:3001/api/blogs
 content-type: application/json
+authorization:bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFtb3Nrd29rIiwiaWQiOiI1ZmVhZmNkYzc4MmE3ZTk1NWZhMDgyMWQiLCJpYXQiOjE2MDkzMTE4NTZ9.QgFpMxI_n0WknwFg_ZY0uX-IY-070RcCvCnRMV23MgA 
 
 {
-    "title":"this is a test blog2",
+    "title":"this is a test blog3",
     "author":"amos oho",
     "url":"http://www.baidu.com",
-    "likes":15
+    "likes":15,
+    "userId":"5feafcdc782a7e955fa0821d"
 }
 
 ### Delete remove a blog
 DELETE http://localhost:3001/api/blogs/5fe40eaf41e8ac926bf0afa5
+authorization:bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFtb3Nrd29rIiwiaWQiOiI1ZmVhZmNkYzc4MmE3ZTk1NWZhMDgyMWQiLCJpYXQiOjE2MDkzMTE4NTZ9.QgFpMxI_n0WknwFg_ZY0uX-IY-070RcCvCnRMV23MgA
+
 
 ### Put update a blog
 PUT  http://localhost:3001/api/blogs/5fea998dba303566a96c9efa
@@ -37,5 +41,14 @@ content-type: application/json
 {
     "username":"amoskwok",
     "name":"amos kwok",
+    "password":"12321"
+}
+
+### POST login
+POST http://localhost:3001/api/login/
+content-type: application/json
+
+{
+    "username":"amoskwok",
     "password":"123454321"
 }

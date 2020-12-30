@@ -67,6 +67,7 @@ describe('addition of a new blog', () => {
       likes: 7,
     }
     await api.post('/api/blogs').send(newBlog)
+      .setHeader('authorization','')
       .expect(201)
       .expect('Content-Type', /application\/json/)
     const res = await api.get('/api/blogs')
@@ -74,6 +75,17 @@ describe('addition of a new blog', () => {
   
     const authors = res.body.map(n => n.author)
     expect(authors).toContain('test user')
+  })
+
+  test('new blog no token with header', async () =>{
+    const newBlog =  {
+      title: 'React patterns',
+      author: 'test user',
+      url: 'https://reactpatterns.com/',
+      likes: 7,
+    }
+    await api.post('/api/blogs').send(newBlog)
+      .expect(401)
   })
 
   test('when a blog does not have a url and title attribute, returned 400 bad request',async () => {
