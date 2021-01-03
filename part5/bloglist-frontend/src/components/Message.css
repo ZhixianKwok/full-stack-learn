@@ -1,0 +1,17 @@
+.message{
+    line-height:50px;
+    border:2px solid green; 
+    background-color:#d3d3d3;
+    border-radius: 5px;
+    padding: 0 8px;
+}
+
+.message[class*="info"]{
+    border-color:#1f8b12;
+    color:green;
+}
+
+.message[class*="error"]{
+    border-color: red;
+    color:red;
+}
