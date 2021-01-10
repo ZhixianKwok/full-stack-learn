@@ -14,8 +14,8 @@ const Blog = ({ blog , updateBlog, deleteBlog }) => {
   return (<div className='blog'>
     {blog.title} - {blog.author} <input type="button" value={view?'hide':'view'} onClick={() => {setView(!view)}}/>
     {view && <div>
-      <p>url:{blog.url}</p>
-      <p>likes:{blog.likes}<input type="button" value="like" onClick={handleOnClick}/></p>
+      <p>url:<span className="url">{blog.url}</span></p>
+      <p>likes:<span className="likes">{blog.likes}</span><input type="button" value="like" onClick={handleOnClick}/></p>
       <p>author:{blog.author}</p>
       <input type="button" value="remove" onClick={() => {deleteBlog(blog)}}/>
     </div> }

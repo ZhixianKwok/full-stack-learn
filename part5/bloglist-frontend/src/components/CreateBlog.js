@@ -26,15 +26,15 @@ export default function CreateBlog({ handleOnCreate }) {
   }
 
   return (
-    <div>
+    <form onSubmit={handleOnClick}>
       <div><span>title:</span><input type="text" data-input="title" onChange={handleOnChange}/></div>
-      <div><span>author:</span><input type="text" data-input="author" onChange={handleOnChange}/></div>
-      <div><span>url:</span><input type="text" data-input="url" onChange={handleOnChange}/></div>
-      <input type="button" value="create" onClick={handleOnClick}/>
-    </div>
+      <div><span>author:</span><input id="author" type="text" data-input="author" onChange={handleOnChange}/></div>
+      <div><span>url:</span><input id="url" type="text" data-input="url" onChange={handleOnChange}/></div>
+      <input type="submit" value="create"/>
+    </form>
   )
 }
 
 CreateBlog.propTypes = {
-  handleOnClick: PropTypes.func.isRequired
+  handleOnCreate: PropTypes.func.isRequired
 }
