@@ -26,6 +26,9 @@ learn more. [📖](https://fullstackopen.com/en/about)
 4. [Part 4 - Testing Express servers, user administration](./part4)
    - [x] [bloglist](./part4/blog-list)
 5. Part 5 - Testing React apps
+   - [x] [bloglist frontend](./part5/bloglist-frontend)
+   - [x] [Blog list tests](./part5/bloglist-frontend)
+   - [x] [bloglist end to end testing](./part5)
 6. Part 6 - State management with Redux
 7. Part 7 - React router, custom hooks, styling app with CSS and webpack
 8. Part 8 - GraphQL

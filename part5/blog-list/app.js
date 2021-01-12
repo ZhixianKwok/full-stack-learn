@@ -10,7 +10,6 @@ const loginRouter = require('./controllers/login')
 const logger = require('./utils/logger')
 const {unknownEndpoint,errorHandler,requestLogger,tokenExtractor} = require('./utils/middleware')
 const MONGODB_URI = config.MONGODB_URI
-
 mongoose.connect(MONGODB_URI,{useNewUrlParser:true,useUnifiedTopology:true,useFindAndModify:false,useCreateIndex:false})
   .then( () => {
     logger.info('connected to MongoDB!')
@@ -27,6 +26,10 @@ app.use(tokenExtractor)
 app.use('/api/blogs',blogRouter)
 app.use('/api/users',userRouter)
 app.use('/api/login',loginRouter)
+if(process.env.NODE_ENV === 'test'){
+  const testRouter = require('./controllers/testing')
+  app.use('/api/testing',testRouter)
+}
 app.use(unknownEndpoint)
 app.use(errorHandler)
 module.exports = app

@@ -7,12 +7,12 @@ export default function LoginForm({ handleOnSubmit,handleOnChange,username,passw
       <h2>login to application</h2>
       <form onSubmit={handleOnSubmit}>
         <div>
-          <span>username</span><input type="text" data-input="name" onChange={handleOnChange} value={username}></input>
+          <span>username</span><input id="username" type="text" data-input="name" onChange={handleOnChange} value={username}></input>
         </div>
         <div>
-          <span>password</span><input type="password" data-input="password" onChange={handleOnChange} value={password}></input>
+          <span>password</span><input id="password" type="password" data-input="password" onChange={handleOnChange} value={password}></input>
         </div>
-        <input type="submit" value="login"/>
+        <input id="login" type="submit" value="login"/>
       </form>
     </div>
   )

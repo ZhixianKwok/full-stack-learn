@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect,Fragment } from 'react'
 
 import blogService from './services/blogs'
 import loginService from './services/login'
@@ -16,13 +16,15 @@ const App = () => {
   const [password,setPassword] = useState('')
   const [message,setMessage] = useState(null)
   const [ user , setUser] = useState(null)
-  console.log(user)
+
   const updateBlog = (newBlog) => {
     blogService.updateBlog(newBlog).then((data) => {
       const index = blogs.findIndex(item => item.id === data.id)
       const newBlogs = JSON.parse(JSON.stringify(blogs)) //simply copy
       newBlogs.splice(index,1,data)
       setBlogs(newBlogs)
+    }).catch(err=>{
+      console.log(err)
     })
   }
 
@@ -31,6 +33,7 @@ const App = () => {
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
       setUser(user)
+      setUsername(user.username)
       setIsLogin(true)
       blogService.setToken(user.token)
     }
@@ -45,10 +48,11 @@ const App = () => {
         const res = await loginService.loginIn({ username, password })
         const user = res.data
         window.localStorage.setItem('blogAppUser',JSON.stringify(user))
+        setUsername(user.username)
         setIsLogin(true)
         setUser(user)
       } catch(err){
-        console.log('Incorrect user name or password entered!')
+        changeMessage({ type:'error',content:'Incorrect user name or password entered!' })
       }
     }
   }
@@ -105,29 +109,34 @@ const App = () => {
     )
   }, [])
 
+  
+  let blogComponent = null
   if(!isLogin){
-    return <Togglable buttonLabel="Login">
-      <LoginForm username={username} password={password} handleOnSubmit={handleOnSubmit} handleOnChange={handleOnChange}/>
+    blogComponent =  <Togglable buttonLabel="Login">
+    <LoginForm username={username} password={password} handleOnSubmit={handleOnSubmit} handleOnChange={handleOnChange}/>
     </Togglable>
-  }
-
-  const renderBlogs = blogs.sort((a, b) => b.likes - a.likes)
-  return (
-    <div>
-      <h2>Blogs</h2>
-      <Message message={message}/>
-      <h3>
+  } else {
+    const renderBlogs = blogs.sort((a, b) => b.likes - a.likes)
+    blogComponent = <Fragment>
+       <h3>
         {`${username} logged in`}
         <input type="button" onClick={handleOnClick} value="logout"/>
       </h3>
       <Togglable buttonLabel="create new blog">
         <CreateBlog handleOnCreate={handleOnCreate}/>
       </Togglable>
-
       <br/>
       {renderBlogs.map(blog =>
         <Blog key={blog.id} blog={blog} updateBlog={updateBlog} deleteBlog={deleteBlog}/>
       )}
+    </Fragment>
+  }
+
+  return (
+    <div>
+      <h2>Blogs</h2>
+      <Message message={message}/>
+      {blogComponent}
     </div>
   )
 }

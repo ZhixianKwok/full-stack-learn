@@ -11,7 +11,7 @@ export default function Togglable(props) {
 
   return (
     <div>
-      <input type="button" onClick={toggleVisibility} value={buttonLabel}/>
+      <input type="button" id="toggle" onClick={toggleVisibility} value={buttonLabel}/>
       <div style={{ display:visible?'':'none' }}>
         {children}
       </div>
