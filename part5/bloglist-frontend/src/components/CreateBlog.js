@@ -27,10 +27,10 @@ export default function CreateBlog({ handleOnCreate }) {
 
   return (
     <form onSubmit={handleOnClick}>
-      <div><span>title:</span><input type="text" data-input="title" onChange={handleOnChange}/></div>
+      <div><span>title:</span><input id="title" type="text" data-input="title" onChange={handleOnChange}/></div>
       <div><span>author:</span><input id="author" type="text" data-input="author" onChange={handleOnChange}/></div>
       <div><span>url:</span><input id="url" type="text" data-input="url" onChange={handleOnChange}/></div>
-      <input type="submit" value="create"/>
+      <input id="new" type="submit" value="create"/>
     </form>
   )
 }
