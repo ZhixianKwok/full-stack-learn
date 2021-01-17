@@ -3,7 +3,7 @@ import {useDispatch,useSelector} from 'react-redux'
 
 const App = () => {
   const dispatch = useDispatch()
-  const state = useSelector(    =>state)
+  const state = useSelector(state=>state)
 
   const good = () => {
     dispatch({
