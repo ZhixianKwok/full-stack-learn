@@ -8,10 +8,7 @@ export default function AnecdoteForm() {
     const onCreate = (event)=>{
         event.preventDefault()
         dispatch(createNote(event.target.note.value))
-        dispatch(changeMessage(event.target.note.value))
-        setTimeout(()=>{
-            dispatch(changeMessage(''))
-        },5000)
+        dispatch(changeMessage(event.target.note.value,5))
     }
 
     return (

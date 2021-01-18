@@ -1,10 +1,18 @@
 
 const initialValue = ''
 
-export const changeMessage = (message) =>{
-    return {
-        type:'INFO',
-        message: message
+export const changeMessage = (message,time) =>{
+    return async dispatch => {
+        dispatch({
+            type:'INFO',
+            message: message
+        })
+        setTimeout(() =>{
+            dispatch({ 
+                type:'INFO',
+                message: ''
+            })
+        },time)
     }
 }
 

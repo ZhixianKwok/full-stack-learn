@@ -9,13 +9,10 @@ export default function AnecdoteList() {
     const dispatch = useDispatch()
 
     const vote = (id) => {
-        dispatch(addVotes(id))
+        dispatch(addVotes(id,anecdotes.find(item=>item.id===id)))
         const anecdote = anecdotes.find(item=>item.id === id)
         if(anecdote){
-            dispatch(changeMessage(anecdote.content))
-            setTimeout(() =>{
-                dispatch(changeMessage(''))
-            },5000)
+            dispatch(changeMessage(anecdote.content,5000))
         }
     }
 
