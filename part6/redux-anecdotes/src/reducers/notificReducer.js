@@ -1,13 +1,14 @@
 
 const initialValue = ''
-
+let _timeoutID = null
 export const changeMessage = (message,time) =>{
     return async dispatch => {
         dispatch({
             type:'INFO',
             message: message
         })
-        setTimeout(() =>{
+        _timeoutID && clearTimeout(_timeoutID)
+        _timeoutID = setTimeout(() =>{
             dispatch({ 
                 type:'INFO',
                 message: ''
