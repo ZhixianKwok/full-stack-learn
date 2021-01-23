@@ -30,6 +30,8 @@ learn more. [📖](https://fullstackopen.com/en/about)
    - [x] [Blog list tests](./part5/bloglist-frontend)
    - [x] [bloglist end to end testing](./part5)
 6. Part 6 - State management with Redux
+   - [x] [redux-anecdotes](./part6/redux-anecdotes)
+   - [x] [unicafe-redux](./part6/unicafe-redux) 
 7. Part 7 - React router, custom hooks, styling app with CSS and webpack
 8. Part 8 - GraphQL
 9.  Part 9 - Typescript
