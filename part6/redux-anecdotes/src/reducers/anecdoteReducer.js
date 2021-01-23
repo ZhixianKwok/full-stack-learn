@@ -12,15 +12,14 @@ export const initializeAnecdotes = ()=>{
 
 export const addVotes = (id, anecdote) => {
   return async dispatch => {
-    const newAnecdote = {...anecdote}
-    debugger;
-    newAnecdote.votes += 1
-    const updateAnecdote = await anecdotesService.updateAnecdotes(id,newAnecdote)
-    dispatch({type:'ADD',
-    data:{
-      id,
-      anecdote:updateAnecdote
-    }
+      const newAnecdote = {...anecdote}
+      newAnecdote.votes += 1
+      const updateAnecdote = await anecdotesService.updateAnecdotes(id,newAnecdote)
+      dispatch({type:'ADD',
+      data:{
+        id,
+        anecdote:updateAnecdote
+      }
     })
   }
 }
