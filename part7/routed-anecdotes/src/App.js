@@ -5,6 +5,7 @@ import {
   useRouteMatch,
   useHistory
 } from "react-router-dom"
+import { useField } from './hooks/index.js'
 
 const Menu = () => {
   const padding = {
@@ -23,7 +24,7 @@ const AnecdoteList = ({ anecdotes }) => (
     <h2>Anecdotes</h2>
     <ul>
       {anecdotes.map((anecdote,index) => 
-        <Link to={`/anecdotes/${index + 1}`}><li key={anecdote.id} >{anecdote.content}</li></Link>
+        <Link key={index} to={`/anecdotes/${index + 1}`}><li key={anecdote.id} >{anecdote.content}</li></Link>
       )}
     </ul>
   </div>
@@ -62,20 +63,26 @@ const Footer = () => (
 )
 
 const CreateNew = (props) => {
-  const [content, setContent] = useState('')
-  const [author, setAuthor] = useState('')
-  const [info, setInfo] = useState('')
+  const content = useField('content')
+  const author = useField('author') 
+  const info = useField('info')
   const history = useHistory()
 
   const handleSubmit = (e) => {
     e.preventDefault()
     props.addNew({
-      content,
-      author,
-      info,
+      content:content.value,
+      author: author.value,
+      info: info.value,
       votes: 0
     })
     history.push('/anecdotes')
+  }
+
+  const handleReset = () => {
+    content.reset()
+    author.reset()
+    info.reset()
   }
 
   return (
@@ -84,17 +91,18 @@ const CreateNew = (props) => {
       <form onSubmit={handleSubmit}>
         <div>
           content
-          <input name='content' value={content} onChange={(e) => setContent(e.target.value)} />
+          <input {...content} reset={null} />
         </div>
         <div>
           author
-          <input name='author' value={author} onChange={(e) => setAuthor(e.target.value)} />
+          <input {...author} reset={null}/>
         </div>
         <div>
           url for more info
-          <input name='info' value={info} onChange={(e)=> setInfo(e.target.value)} />
+          <input {...info} reset={null}/>
         </div>
-        <button>create</button>
+        <input type="submit" name="submit" value="create" /> 
+        <input type="button" name="submit" value="reset" onClick={handleReset}/>
       </form>
     </div>
   )
