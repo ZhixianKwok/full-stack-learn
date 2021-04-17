@@ -33,7 +33,11 @@ learn more. [📖](https://fullstackopen.com/en/about)
    - [x] [redux-anecdotes](./part6/redux-anecdotes)
    - [x] [unicafe-redux](./part6/unicafe-redux) 
 7. Part 7 - React router, custom hooks, styling app with CSS and webpack
+   - [x] [routed anecdotes](./part7/routed-anecdotes)
+   - [x] [anecdotes and hooks](./part7/routed-anecdotes)
+   - [ ] [blog list]()
 8. Part 8 - GraphQL
+   
 9.  Part 9 - Typescript
 10. Part 10 - React Native
 11. Part 11 - CI/CD
