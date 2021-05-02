@@ -108,7 +108,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addBook(title: String!,author: String!,published: Int!,genres: [String!]!
+    addBook(title: String!,auting!,puhor: Strblished: Int!,genres: [String!]!
     ): Book,
     editAuthor(name:String!,setBornTo:Int!):Author
   }
