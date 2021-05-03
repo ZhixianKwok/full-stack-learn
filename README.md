@@ -37,7 +37,9 @@ learn more. [📖](https://fullstackopen.com/en/about)
    - [x] [anecdotes and hooks](./part7/routed-anecdotes)
    - [ ] [blog list]()
 8. Part 8 - GraphQL
-   
-9.  Part 9 - Typescript
+   - [x] [books and authors frontend](./part8/library-frontend)
+   - [x] [books and authors backend)](./part8/library-backend)
+9. Part 9 - Typescript  
+   - [x] [bmiCalculator](./part9/typescript-exercises/bmiCalculator.ts)
 10. Part 10 - React Native
 11. Part 11 - CI/CD
