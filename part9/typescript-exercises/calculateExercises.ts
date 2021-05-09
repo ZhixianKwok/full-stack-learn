@@ -41,8 +41,13 @@ function calculateExercises(traningHoursOfDay: number[], target: number):Trainin
     };
 }
 
-const args = process.argv.slice(2).map(item => Number(item));
-const target = args.shift();
-const traningHoursOfDay = args;
 
-console.log(calculateExercises(traningHoursOfDay, target));
+// if(process.argv.length >= 2){
+//     const args = process.argv.slice(2).map(item => Number(item));
+//     const target = args.shift() || 2;
+//     const traningHoursOfDay = args;
+//     console.log(calculateExercises(traningHoursOfDay, target));
+// }
+
+
+export default calculateExercises;
